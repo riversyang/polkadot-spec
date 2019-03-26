@@ -1,8 +1,12 @@
 Polkadot is primarily described by the Relay chain protocol; key logic between parachain protocols will likely be shared between parachain implementations but are not inherently a part of the Polkadot protocol.
 
+Polkadot 主要是基于中继链协议（Relay chain protocol）来描述的。平行链（parachain）间的关键逻辑很可能将在平行链的实现之间进行共用，而不是从 Polkadot 协议来进行继承。
+
 # Relay chain
 
 The relay chain is a simplified proof-of-stake blockchain backed by a Web Assembly (Wasm) engine. Unlike Ethereum and Bitcoin, balances are not a first-class part of the state-transition function (STF). Indeed the only aspect of the relay-chain which is first-class is the notion of an *object*. Each object is identified through an index (`ObjectID`) and has some code and storage (similar to Ethereum contract accounts). The code exports functions which can be called either from other objects or through a transaction.
+
+中继链是一个简化的权益证明区块链，并以 Web Assembly（Wasm）引擎作为后端。与以太坊和比特币不同，余额不再是（中继链的）状态转换函数（state-transition function，STF）的首要部分。实际上在中继链中， *对象（object）* 是最为重要的概念。每个对象通过一个索引（`ObjectID`）来标识，且有自己的代码和存储（storage）（与以太坊的合约账户类似）。从其代码中可以导出可供其他对象或交易来执行的函数。
 
 Practically speaking, account balances do exist on the relay chain but are entirely an artefact of an object's storage and code. The entire state transition is managed through a single call into a particular object named "Administration". Aside from the consensus algorithm (which is "hard-coded" into the protocol for light-client practicality), all aspects of the protocol are soft-coded as the logic of these objects and can be upgraded without any kind of hard-fork.
 
