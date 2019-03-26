@@ -10,6 +10,8 @@ The relay chain is a simplified proof-of-stake blockchain backed by a Web Assemb
 
 Practically speaking, account balances do exist on the relay chain but are entirely an artefact of an object's storage and code. The entire state transition is managed through a single call into a particular object named "Administration". Aside from the consensus algorithm (which is "hard-coded" into the protocol for light-client practicality), all aspects of the protocol are soft-coded as the logic of these objects and can be upgraded without any kind of hard-fork.
 
+客观地讲，在中继链上确实存在账户余额，只是它们变为了由某个对象的存储和代码所控制的东西。整个的状态转换是通过对所谓“管理员（Administration）”对象的一个调用来管理的。除了共识算法（为了支持轻客户端而被硬编码到协议中）以外，协议的其他所有部分都是作为（中继链的）若干对象的软编码（soft-coded）存在的，且能够在不进行任何硬分叉的前提下进行升级。
+
 ## Consensus
 
 Consensus is defined as the job of ensuring that the blockchain, and thus the collection of state-transitions from genesis to head, is agreed upon between all conformant clients and can progress consistently. It is separated from the rest of block-processing and forms a "hard-coded" part of the protocol, not handled by the Wasm object-execution environment. This is primarily because it would make light-client implementation extremely difficult and largely preclude multiple strategies for consensus-forming that could add substantial reliability to the network.
